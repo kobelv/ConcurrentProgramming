@@ -1,4 +1,4 @@
-package com.kobe.currentmode.future;
+package com.kobe.concurrentmode.future;
 
 public class FutureClient {
 	FutureData futureData = new FutureData();

@@ -1,4 +1,4 @@
-package com.kobe.currentmode.future;
+package com.kobe.concurrentmode.future;
 
 public class RealData implements Data {
 
