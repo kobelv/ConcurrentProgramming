@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Producer implements Runnable {
 
 	private BlockingQueue<Message> queue;
-	boolean isRunning = true;
+	private volatile boolean isRunning = true;
 	AtomicInteger counter = new AtomicInteger(0);
 	public Producer(BlockingQueue<Message> queue) {
 		this.queue = queue;
@@ -18,6 +18,7 @@ public class Producer implements Runnable {
 		while(isRunning){
 			Message m1 = new Message(counter.incrementAndGet(), "producer");
 			try {
+				Producer p1 = new Producer(queue);
 				if(!queue.offer(m1, 2, TimeUnit.SECONDS)){
 					//means failed to add into queue, try again
 					queue.offer(m1, 2, TimeUnit.SECONDS);
